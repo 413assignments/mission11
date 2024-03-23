@@ -8,23 +8,36 @@
 
     @foreach (Book b in Model.Books)
     {
-        <h3>@b.Title</h3>
+        <div class="card m-1 p-1">
+            <h4>@b.Title
+            <span class="badge rounded-pill bg-primary text-white float-end">$@b.Price</span>
+            </h4>
 
-        <ul>
-            <li>Author: @b.Author</li>
-            <li>Publisher: @b.Publisher</li>
-            <li>ISBN: @b.ISBN</li>
-            <li>Classification: @b.Classification</li>
-            <li>Category: @b.Category</li>
-            <li>PageCount: @b.PageCount</li>
-            <li>Price: @b.Price</li>
-        </ul>
-    } 
-    @for (int i = 1; i <= Model.PaginationInfo.TotalNumPages; i++)
-    {
-        <a asp-controller="Home" asp-action="Index" asp-route-pageNum="@i">@i</a>
+            <ul>
+                <li>Author: @b.Author</li>
+                <li>Publisher: @b.Publisher</li>
+                <li>ISBN: @b.ISBN</li>
+                <li>Classification: @b.Classification</li>
+                <li>Category: @b.Category</li>
+                <li>PageCount: @b.PageCount</li>                
+            </ul>
+        </div>
     }
+    
 
+    <div class="btn-group pull-right m-1">
+        @for (int i = 1; i <= Model.PaginationInfo.TotalNumPages; i++)
+        {
+            if (Model.PaginationInfo.CurrentPage == i)
+            {
+                <a class="btn btn-primary" asp-controller="Home" asp-action="Index" asp-route-pageNum="@i">@i</a>
+            }
+            else
+            {
+                <a class="btn btn-outline-dark" asp-controller="Home" asp-action="Index" asp-route-pageNum="@i">@i</a>
+            }
+        }
+    </div>  
 
 
 

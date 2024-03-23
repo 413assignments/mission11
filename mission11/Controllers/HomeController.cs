@@ -15,7 +15,7 @@ namespace mission11.Controllers
         }
 
 
-        public IActionResult Index(int pageNum)
+        public IActionResult Index(int pageNum) 
         {
             int pageSize = 10;
 
@@ -23,7 +23,7 @@ namespace mission11.Controllers
             {
                 Books = _repo.Books
                 .OrderBy(x => x.Title)
-                .Skip((pageNum - 1) * pageSize)
+                .Skip((pageNum - 1) * pageSize) 
                 .Take(pageSize),
 
                 PaginationInfo = new PaginationInfo
